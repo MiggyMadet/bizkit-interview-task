@@ -37,6 +37,10 @@ Your first task is, of course, to set up the Phasebook repository on your local 
     ```
     pip install -r requirements.txt
     ```
+
+    ```
+    pip install numpy
+    ```
 6. Run the application with the command:
     ```
     flask --app phasebook --debug run
