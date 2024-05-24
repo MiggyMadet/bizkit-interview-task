@@ -1,3 +1,4 @@
+import operator
 from flask import Blueprint, request
 
 from .data.search_data import USERS
@@ -24,7 +25,28 @@ def search_users(args):
     Returns:
         a list of users that match the search parameters
     """
-
     # Implement search here!
-
-    return USERS
+    keys = list()
+    result = list()
+    for item in args.items():
+        key = item[0]
+        value = item[1]
+        #print(key)
+        for people in USERS:
+            if key == "name" or key == "occupation":
+                if value in people[key]:
+                    result.append(people)
+            else:
+                if key == "id":
+                    if people[key] == value:
+                        result.append(people) 
+                else:
+                    if people[key] == int(value):
+                        result.append(people) 
+    
+    # for Search Specifications
+    # result.sort(key=lambda x: x["id"])
+    
+    # for Bonus Challenge
+    result.sort(key=lambda x: key)
+    return result

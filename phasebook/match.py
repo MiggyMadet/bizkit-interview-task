@@ -1,4 +1,5 @@
 import time
+import numpy as np
 from flask import Blueprint
 
 from .data.match_data import MATCHES
@@ -20,8 +21,17 @@ def match(match_id):
 
 
 def is_match(fave_numbers_1, fave_numbers_2):
-    for number in fave_numbers_2:
-        if number not in fave_numbers_1:
-            return False
+    # print(fave_numbers_1)
+    # print(fave_numbers_2)
+    # for number in fave_numbers_2:
+    #     if number not in fave_numbers_1:
+    #         return False
 
-    return True
+    # return True
+
+    # using numpy library
+    data1 = np.array(fave_numbers_1)
+    data2 = np.array(fave_numbers_2)
+    
+    return np.isin(fave_numbers_2, fave_numbers_1).all()
+
